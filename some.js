@@ -1,39 +1,32 @@
-function calculate(type, n) {
-    if (type === 'factorial') {
-        return factorial(n);
-    } else if (type === 'prime') {
-        return isPrime(n);
-    } else {
-        return 'Invalid calculation type. Please choose "factorial" or "prime".';
-    }
-}
-
+ 
+// Function to calculate factorial of a number
 function factorial(n) {
-    if (n === 0 || n === 1) {
-        return 1;
-    } else {
-        return n * factorial(n - 1);
-    }
+    return (n === 0 || n === 1) ? 1 : n * factorial(n - 1);
 }
 
+// Function to check if a number is prime
 function isPrime(n) {
-    if (n <= 1) {
-        return false;
-    }
-    if (n <= 3) {
-        return true;
-    }
-    if (n % 2 === 0 || n % 3 === 0) {
-        return false;
-    }
+    if (n <= 1) return false;
+    if (n <= 3) return true;
+    if (n % 2 === 0 || n % 3 === 0) return false;
     let i = 5;
     while (i * i <= n) {
-        if (n % i === 0 || n % (i + 2) === 0) {
-            return false;
-        }
+        if (n % i === 0 || n % (i + 2) === 0) return false;
         i += 6;
     }
     return true;
+}
+
+// Function to perform calculation based on type
+function calculate(type, n) {
+    switch(type) {
+        case 'factorial':
+            return factorial(n);
+        case 'prime':
+            return isPrime(n);
+        default:
+            return 'Invalid calculation type. Please choose "factorial" or "prime".';
+    }
 }
 
 // Example usage:
