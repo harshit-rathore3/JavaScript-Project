@@ -6,29 +6,26 @@ from typing import List
 
 from utils.utils import handle_exception, run_terminal_commands
 
-
 class GitHubUtils:
     """
     A utility class for handling various GitHub operations such as cloning repositories,
     checking out branches, committing changes, and more.
     """
-    def __init__(self, urls: list, path=os.getcwd()) -> None:
+    def __init__(self, urls: list, path: str = os.getcwd()) -> None:
         """
         Initialize the GitHubUtils object.
 
         Args:
             urls (list): A list of repository URLs to clone.
-            path (str, optional): The path to the directory where the repositories should be cloned. Defaults to None.
+            path (str, optional): The path to the directory where the repositories should be cloned. Defaults to the current working directory.
         """
         try:
             self.urls = urls
 
             git_initialization = ['git config --global core.longpaths true',
                                   'git config --global user.name "Harshit Rathore"',
-                                  'git config --global user.email "harshit.rathore@techolution.com"',
-                                  ]
+                                  'git config --global user.email "harshit.rathore@techolution.com"']
             run_terminal_commands(cmd_list=git_initialization)
-            # TODO : set git credentials as well either here or in config
 
             self.path = os.path.join(os.getcwd(), "Repos")
             if os.path.exists(self.path):
@@ -43,7 +40,6 @@ class GitHubUtils:
                 "path": path
             }
             handle_exception("Error in GitHubUtils Constructor", data, e, traceback.print_exc(), error_code=0)
-
 
     def get_files_changed(self, commit_id: str) -> List[str]:
         """
@@ -66,7 +62,6 @@ class GitHubUtils:
             data = {'commit id': commit_id}
             handle_exception("Error while fetching changed files list with commit id", data, e, traceback.print_exc(), error_code=0)
 
-
     def git_checkout_and_pull(self, branch_name: str) -> None:
         """
         Checkout to a specific branch and pull the latest changes.
@@ -80,7 +75,6 @@ class GitHubUtils:
         except Exception as e:
             data = {'branch name': branch_name}
             handle_exception("Error while git checkout and pull", data, e, traceback.print_exc(), error_code=0)
-
 
     def git_add_commit(self, msg: str) -> None:
         """
@@ -96,7 +90,6 @@ class GitHubUtils:
             data = {"commit msg": msg}
             handle_exception("Error while git commit", data, e, traceback.print_exc(), error_code=0)
 
-
     def pull_push(self) -> None:
         """
         Pull the latest changes from the remote repository and push local changes.
@@ -106,7 +99,6 @@ class GitHubUtils:
             run_terminal_commands(cmd_list=commands)
         except Exception as e:
             handle_exception("Error while git pull and push", {}, e, traceback.print_exc(), error_code=0)
-
 
     def get_files_to_ignore(self, commit_msg: str) -> list:
         """
@@ -129,7 +121,6 @@ class GitHubUtils:
             data = {'commit msg': commit_msg}
             handle_exception("Error while parsing skip flag", data, e, traceback.print_exc(), error_code=0)
             return []
-
 
     def remove_repo(self) -> bool:
         """
