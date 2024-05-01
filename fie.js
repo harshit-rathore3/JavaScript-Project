@@ -1,45 +1,48 @@
 
-var count = 10;
-var name = 'John';
+// Refactored Code
 
-var PI = 3.14159;
-var MAX_SIZE = 100;
+// Constants
+const COUNT = 10;
+const NAME = 'John';
+const PI = 3.14159;
+const MAX_SIZE = 100;
 
-var a = 10;
-var b = 20;
-var c = a + b;
-
+// Variables
+let a = 10;
+let b = 20;
+let c = a + b;
 
 let x = 5;
 let y = 10;
 let z = x * y;
 
-var first_name = 'John';
-var last_name = 'Doe';
-
+let firstName = 'John';
+let lastName = 'Doe';
 
 let result;
-console.log('')
-console.log('')
-console.log('')
-console.log('')
-console.log('')
-console.log('')
-result = calculateSum(a, b);
 
+// Function to calculate the sum
+function calculateSum(a, b) {
+  return a + b;
+}
 
-globalVariable = 'Hello';
+// Global variable
+let globalVariable = 'Hello';
+
+// Function to greet
 function greet() {
   console.log(globalVariable);
 }
 
+// Flags
 let flag = true;
 let status = false;
 
-const apiKey = 'abc123';
-const maxRetries = 3;
+// Constants
+const API_KEY = 'abc123';
+const MAX_RETRIES = 3;
 
+// Conditional statement
 if (status === 'active') {
-  // ...
-  //some code
+  // Some code
 }
